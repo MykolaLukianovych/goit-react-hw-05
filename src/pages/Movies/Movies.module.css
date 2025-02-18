@@ -1,0 +1,14 @@
+.searckWrap {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  padding: 5px;
+  width: 400px;
+}
