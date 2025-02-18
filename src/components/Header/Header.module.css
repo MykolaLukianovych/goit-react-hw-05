@@ -1,0 +1,10 @@
+.header {
+  background-color: antiquewhite;
+  padding: 20px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.headerNav {
+  display: flex;
+  gap: 15px;
+}
