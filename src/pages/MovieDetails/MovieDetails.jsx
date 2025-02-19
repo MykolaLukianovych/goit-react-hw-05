@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {  NavLink, useLocation, useParams } from "react-router-dom";
 import { ShowMovieDetails } from "../../services/api";
 import { useEffect, useState } from "react";
 import s from "./MovieDetails.module.css"
@@ -7,10 +7,7 @@ import s from "./MovieDetails.module.css"
 const MovieDetails = () => {
   const {movieId} = useParams();
   const [movie, setMovie] = useState(null);
-  const navigate = useNavigate();
   const location = useLocation();
-
-  const prevLocation = location.state?.from || '/movies';
 
   useEffect(() => {
     const getMovie = async () => {
@@ -19,8 +16,6 @@ const MovieDetails = () => {
     }
     getMovie()
   }, [movieId])
-
-  console.log(movie);
   
   if (!movie) {
   return <div>
@@ -29,7 +24,7 @@ const MovieDetails = () => {
 }
   return (
     <div>
-      <button className={s.back} onClick={() => navigate(prevLocation)}>Go back</button>
+      <NavLink to={location.state} className={s.back}>Go back</NavLink>
       <div className={s.movieInfo}>
         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Movie Poster" className={s.img} />
         <div className={s.info}>

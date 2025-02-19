@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { SearchMovies } from '../../services/api';
 import s from './Movies.module.css'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 
 const Movies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const navigate = useNavigate();
+  const location = useLocation()
+
 
 
   const handleSearch = async () => {
@@ -16,10 +17,6 @@ const Movies = () => {
       setMovies(results);
       setQuery("")
     }
-  };
-
-   const handleMovieClick = (movieId) => {
-    navigate(`/movies/${movieId}`);
   };
   
   const handleKeyDown = (e) => {
@@ -49,7 +46,7 @@ const Movies = () => {
       <ul>
         {movies.map((item) => (
           <li key={item.id}>
-            <NavLink to={item.id.toString()} onClick={() => handleMovieClick(movies.id)}>
+            <NavLink to={item.id.toString()} state={location}>
               {item.title}
             </NavLink>
           </li>
