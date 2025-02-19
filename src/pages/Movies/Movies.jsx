@@ -46,7 +46,7 @@ const Movies = () => {
       <ul>
         {movies.map((item) => (
           <li key={item.id}>
-            <NavLink to={item.id.toString()} state={location}>
+            <NavLink to={item.id.toString()} state={location} className={s.link}>
               {item.title}
             </NavLink>
           </li>

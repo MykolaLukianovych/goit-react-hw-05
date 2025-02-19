@@ -23,7 +23,7 @@ const MovieDetails = () => {
   </div>;
 }
   return (
-    <div>
+    <div className={s.detailsWrapper}>
       <NavLink to={location.state} className={s.back}>Go back</NavLink>
       <div className={s.movieInfo}>
         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Movie Poster" className={s.img} />
