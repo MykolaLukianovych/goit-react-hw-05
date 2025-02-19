@@ -6,7 +6,7 @@ import Header from "./components/Header/Header"
 // import MovieDetails from "./pages/MovieDetails/MovieDetails"
 // import Cast from "./components/Cast/Cast"
 // import Reviews from "./components/Reviews/Reviews"
-import { lazy } from "react"
+import { lazy, Suspense } from "react"
 
 
 const Home = lazy(() => import("./pages/Home/Home"))
@@ -21,6 +21,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <Suspense fallback={<h2>Loading...</h2>}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/:movieId" element={<MovieDetails />} >
@@ -29,7 +30,8 @@ const App = () => {
         </Route>
         <Route path="/movies" element={<Movies />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        </Routes>
+        </Suspense>
     </div>
   );
 };
