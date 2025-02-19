@@ -1,11 +1,11 @@
 .detailsWrapper {
   margin-top: 20px;
+  padding: 10px;
 }
 
 .movieInfo {
   display: flex;
   gap: 10px;
-  padding: 15px;
 }
 
 .img {
@@ -20,6 +20,27 @@
 }
 
 .back {
-  margin-left: 20px;
+  color: black;
+}
+
+.linkWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.link {
   color: blue;
+}
+
+.Outlet {
+  margin-top: 15px;
+  padding: 5px;
+  border-top: solid 1px gray;
+}
+
+.linkTitle {
+  border-top: solid 1px gray;
+  margin-top: 15px;
+  padding-top: 10px;
 }

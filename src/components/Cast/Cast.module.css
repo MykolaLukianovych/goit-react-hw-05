@@ -1,0 +1,16 @@
+.img {
+  width: 150px;
+  height: 200px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.castWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

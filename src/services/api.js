@@ -20,6 +20,17 @@ export const ShowMovieDetails = async (movieId) => {
     return data
 }
 
+export const GetCast = async (movieId) => {
+  const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, options);
+  return data.cast;
+}
+
+export const GetReview = async (movieId) => {
+  const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews`, options);
+  return data.results;
+}
+
+
 const optionsToSearch = {
   params: {
     include_adult: 'false',
