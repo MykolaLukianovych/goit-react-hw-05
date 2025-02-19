@@ -16,7 +16,7 @@ const Cast = () => {
         }
         getCast()
     }, [movieId])
-    console.log(cast);
+
     
     return (
         <div className={s.castWrapper}>
@@ -27,7 +27,7 @@ const Cast = () => {
                     <h4>{item.original_name}</h4>
                     <p>Character: {item.character}</p>
                 </div>
-            )};
+            )}
         </div>
     );
 }

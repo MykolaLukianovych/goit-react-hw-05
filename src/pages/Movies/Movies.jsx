@@ -1,28 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchMovies } from '../../services/api';
-import s from './Movies.module.css'
-import { NavLink, useLocation } from 'react-router-dom';
-
+import s from './Movies.module.css';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('query') || '');
+  
+  const location = useLocation();
 
+  useEffect(() => {
+    const queryParam = searchParams.get('query');
+    if (queryParam && queryParam.trim().length > 2) {
+      const fetchMovies = async () => {
+        const results = await SearchMovies(queryParam);
+        setMovies(results);
+      };
+      fetchMovies();
+    }
+  }, [searchParams]);
 
-
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (query.trim().length > 2) {
-      const results = await SearchMovies(query);
-      setMovies(results);
-      setQuery("")
+      setSearchParams({ query });
     }
   };
   
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
-      setQuery("")
     }
   };
 
