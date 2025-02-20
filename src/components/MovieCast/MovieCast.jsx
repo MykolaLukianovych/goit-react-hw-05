@@ -8,25 +8,40 @@ import s from "./MovieCast.module.css"
 const MovieCast = () => {
     const { movieId } = useParams();
     const [cast, setCast] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getCast = async () => {
-            const data = await GetCast(movieId)
-            setCast(data)
-        }
+            setLoading(true);
+            try {
+                const data = await GetCast(movieId)
+                setCast(data)
+            } catch (err) {
+                console.error("Error fetching cast:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
         getCast()
-    }, [movieId])
+    }, [movieId]);
 
     
     return (
         <div className={s.castWrapper}>
-            {cast.map(item =>
-                <div className={s.items} key={item.id}>
-                    <img src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
-                     alt="Photo of the actor" className={s.img} />
-                    <h4>{item.original_name}</h4>
-                    <p>Character: {item.character}</p>
-                </div>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                cast.map(item => (
+                    <div className={s.items} key={item.id}>
+                        <img 
+                            src={`https://image.tmdb.org/t/p/w500${item.profile_path}`} 
+                            alt="Photo of the actor" 
+                            className={s.img} 
+                        />
+                        <h4>{item.original_name}</h4>
+                        <p>Character: {item.character}</p>
+                    </div>
+                ))
             )}
         </div>
     );
