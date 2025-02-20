@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { SearchMovies } from '../../services/api';
 import s from './MoviesPage.module.css';
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import MovieList from '../../components/MovieList/MovieList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('query') || '');
-  
-  const location = useLocation();
 
   useEffect(() => {
     const queryParam = searchParams.get('query');
@@ -49,16 +48,7 @@ const Movies = () => {
         
         <button onClick={handleSearch}>Search</button>
       </div>
-
-      <ul>
-        {movies.map((item) => (
-          <li key={item.id}>
-            <NavLink to={item.id.toString()} state={location} className={s.link}>
-              {item.title}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        <MovieList movies={movies}/>
     </div>
   );
 };

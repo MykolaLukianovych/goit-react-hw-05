@@ -1,29 +1,18 @@
 import { NavLink, useLocation } from "react-router-dom"
 import s from './MovieList.module.css'
-import { useEffect, useState } from "react";
-import { TrendingMovies } from "../../services/api";
 
-const MovieList = () => {
 
-  const [trend, setTrend] = useState([]);
-  const location = useLocation();
-  
+const MovieList = ({movies}) => {
 
-  useEffect(() => {
-    const getMovies = async () => {
-      const movies = await TrendingMovies();
-      setTrend(movies)
-    }
-    getMovies();
-  }, []);
-
+    const location = useLocation();
+    
 
   return (
     <div>
       <ul className={s.trendList}>
-        {trend.map(item => <li key={item.id}>
+        {movies.map(item => <li key={item.id}>
           <NavLink to={`/movies/${item.id}`} className={s.link} state={location}>
-            {item.original_title}
+            {item.title}
           </NavLink>
         </li>)}
           </ul>
