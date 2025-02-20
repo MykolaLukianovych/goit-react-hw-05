@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SearchMovies } from '../../services/api';
-import s from './Movies.module.css';
+import s from './MoviesPage.module.css';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {

@@ -1,10 +1,10 @@
 import {  NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { ShowMovieDetails } from "../../services/api";
 import { useEffect, useRef, useState } from "react";
-import s from "./MovieDetails.module.css"
+import s from "./MovieDetailsPage.module.css"
 
 
-const MovieDetails = () => {
+const MovieDetailsPage = () => {
   const {movieId} = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
@@ -49,4 +49,4 @@ const MovieDetails = () => {
   )
 }
 
-export default MovieDetails
+export default MovieDetailsPage

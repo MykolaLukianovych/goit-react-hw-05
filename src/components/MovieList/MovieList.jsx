@@ -1,11 +1,10 @@
+import { NavLink, useLocation } from "react-router-dom"
+import s from './MovieList.module.css'
 import { useEffect, useState } from "react";
 import { TrendingMovies } from "../../services/api";
-import s from "./Home.module.css"
-import { NavLink, useLocation } from "react-router-dom";
 
+const MovieList = () => {
 
-
-const Home = () => {
   const [trend, setTrend] = useState([]);
   const location = useLocation();
   
@@ -17,10 +16,10 @@ const Home = () => {
     }
     getMovies();
   }, []);
-  
+
+
   return (
-      <div className={s.homePage}>
-          <h1>Trending today</h1>
+    <div>
       <ul className={s.trendList}>
         {trend.map(item => <li key={item.id}>
           <NavLink to={`/movies/${item.id}`} className={s.link} state={location}>
@@ -32,4 +31,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default MovieList
